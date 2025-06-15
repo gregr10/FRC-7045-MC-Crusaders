@@ -1,157 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MCCrusaders - FRC Team 7045</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f7fa;
-      color: #1e2d44;
-    }
-    header {
-      background-color: #183e73;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1rem;
-      font-weight: 500;
-    }
-    .hero {
-      background: linear-gradient(to right, #224c88, #5aa0d8);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .gallery-item p {
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-    footer {
-      background-color: #183e73;
-      color: white;
-      text-align: center;
-      padding: 1rem 2rem;
-    }
-    .social {
-      margin-top: 1rem;
-    }
-    .social a {
-      color: #b8d9ff;
-      margin: 0 0.5rem;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRC 7045</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f0f4f8; /* Light gray background */
+        }
+        /* Custom styles for dropdown animation */
+        .dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .dropdown-menu.active {
+            max-height: 200px; /* Adjust based on content height */
+            transition: max-height 0.3s ease-in;
+        }
+        /* Hide content sections by default */
+        .content-section {
+            display: none;
+        }
+        /* Show active content section */
+        .content-section.active {
+            display: block;
+        }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 500px;
+            position: relative;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4A5568; /* gray-700 */
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db; /* Carolina blue-like color */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+            display: none; /* Hidden by default */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-spinner.active {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>MCCrusaders - FRC Team 7045</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#robots">Robots</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#sponsors">Sponsors</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<body class="min-h-screen flex flex-col">
 
-  <section class="hero">
-    <h2>Building Robots. Shaping Leaders. Inspiring the Future.</h2>
-    <p>Welcome to the official site of the MCCrusaders – Morris Catholic High School's FRC Team 7045. We compete in FIRST Robotics to push the limits of innovation, teamwork, and technical excellence.</p>
-  </section>
+    <header class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-white rounded-lg p-2 cursor-pointer" onclick="showPage('home')">FRC 7045</h1>
 
-  <section id="about" class="section">
-    <h2>About Our Team</h2>
-    <p>Team 7045 is based out of Morris Catholic High School in Denville, New Jersey. Since 2018, we've been designing, building, and programming robots to compete at the highest levels of the FIRST Robotics Competition.</p>
-  </section>
+            <div class="relative md:hidden">
+                <button id="dropdown-button" class="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700 transition duration-300">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div id="dropdown-menu" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white text-blue-800 rounded-md shadow-lg py-2 z-10">
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('about'); toggleDropdown(); return false;">About</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('current-project'); toggleDropdown(); return false;">Current Project</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-sky-100 rounded-md transition duration-200" onclick="showPage('fundraiser'); toggleDropdown(); return false;">Fundraiser</a>
+                </div>
+            </div>
 
-  <section id="robots" class="section">
-    <h2>Our Robots</h2>
-    <p>Each year, we build a new robot from the ground up to take on exciting game challenges. Below is a look at our creations over the years.</p>
-  </section>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('about'); return false;">About</a></li>
+                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('current-project'); return false;">Current Project</a></li>
+                    <li><a href="#" class="text-white hover:text-sky-300 transition duration-300 text-lg font-medium rounded-md p-2" onclick="showPage('fundraiser'); return false;">Fundraiser</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <section id="gallery" class="section">
-    <h2>Robots Through the Years</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="images/2024-robocon-pit.jpg" alt="2024 Robocon Pit">
-        <p>2024 – Robocon Event Highlights</p>
-      </div>
-      <div class="gallery-item">
-        <img src="images/2023-mount-olive.jpg" alt="2023 Mount Olive Event">
-        <p>2023 – Charged Up: Mount Olive District</p>
-      </div>
-      <div class="gallery-item">
-        <img src="images/2023-warren-hills.jpg" alt="2023 Warren Hills Win">
-        <p>2023 – Warren Hills District Champions</p>
-      </div>
-      <div class="gallery-item">
-        <img src="images/2022-templar-tech.jpg" alt="2022 Competition">
-        <p>2022 – Live from the field</p>
-      </div>
-      <div class="gallery-item">
-        <img src="images/2019-robot.jpg" alt="2019 Robot">
-        <p>2019 – Robot ready for action</p>
-      </div>
+    <main class="container mx-auto p-4 flex-grow">
+        <section id="home-page" class="content-section active bg-white p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Welcome to FRC 7045!</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        We are <span class="font-semibold text-blue-800">FRC Team 7045</span>, a passionate group of students dedicated to robotics, engineering, and innovation. We participate in the <a href="https://www.firstinspires.org/robotics/frc" target="_blank" class="text-sky-600 hover:underline">FIRST Robotics Competition</a>, where we design, build, and program robots to compete in challenging annual games.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Our team is committed to fostering a love for STEM, developing critical problem-solving skills, and building a strong community. Through our work, we aim to inspire future generations of engineers and scientists.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Explore our site to learn more about our journey, current endeavors, and how you can support us!
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://placehold.co/400x300/4299e1/ffffff?text=Team+Robot" alt="FRC 7045 Team Robot" class="rounded-lg shadow-lg max-w-full h-auto">
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <button class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105" onclick="showPage('current-project'); return false;">
+                    See Our Current Project
+                </button>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-gray-200 text-center" id="socials-section">
+                <h3 class="text-2xl font-semibold text-blue-800 mb-4">Connect With Us!</h3>
+                <div class="flex flex-wrap justify-center items-center gap-6 text-lg">
+                    <a href="mailto:robotics@morriscatholic.org" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-6 13h6a2 2 0 002-2V7a2 2 0 00-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        robotics@morriscatholic.org
+                    </a>
+                    <a href="https://www.instagram.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.792.016 3.797.067.817.042 1.35.152 1.771.321.42.17.72.396 1.05.727.33.33.559.63.727 1.05.169.421.28.954.321 1.77.052 1.006.067 1.368.067 3.797v.001c0 2.43-.016 2.792-.067 3.797-.042.817-.152 1.35-.321 1.771-.17.42-.396.72-.727 1.05-.33.33-.63.559-.727 1.05-.169.421-.28-.954-.321-1.77-.052-1.006-.067-1.368-.067-3.797v-.001c0-2.43.016-2.792.067-3.797.042-.817.152-1.35.321-1.771.17-.42.396-.72.727-1.05.33-.33.63-.559.727-1.05.169-.421.28-.954.321-1.77.052-1.006.067-1.368.067-3.797zm0 2.163c-.854 0-1.758.016-2.92.066-1.16.05-1.921.157-2.383.349-.46.192-.79.444-1.077.731-.287.288-.538.618-.73 1.078-.192.46-.3.87-.349 2.38-.05 1.162-.066 2.066-.066 2.921s.016 1.758.066 2.92c.05 1.16.157 1.921.349 2.383.192.46.444.79.731 1.077.288.287.618.538 1.078.73.46.192.87.3 2.38.349 1.162.05 2.066.066 2.921.066s1.758-.016 2.92-.066c1.16-.05 1.921-.157 2.383-.349.46-.192.79-.444 1.077-.731.287-.288.538-.618.73-1.078.192-.46.3-.87.349-2.38.05-1.162.066-2.066.066-2.921s-.016-1.758-.066-2.92c-.05-1.16-.157-1.921-.349-2.383-.192-.46-.444-.79-.731-1.077-.288-.287-.618-.538-1.078-.73-.46-.192-.87-.3-2.38-.349-1.162-.05-2.066-.066-2.921-.066zm0 3.657a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm6.75-2.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" />
+                        </svg>
+                        @frc7045 (Instagram)
+                    </a>
+                    <a href="https://x.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.21-6.873L4.925 21.75H1.613l7.39-8.428L1.455 2.25H4.766l5.768 7.617L18.244 2.25zm-2.91 17.294h1.953L7.76 4.606H5.696l9.638 14.938z"></path>
+                        </svg>
+                        @frc7045 (X)
+                    </a>
+                    <a href="https://www.facebook.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h3V2h-3c-3.404 0-5 2.305-5 5v2.5H7.5v4H11V22h4v-8.5z" />
+                        </svg>
+                        FRC7045 (Facebook)
+                    </a>
+                     <a href="https://github.com/MCRobotics7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.167 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.867-.013-1.7a6.67 6.67 0 00-2.203 1.08.61.61 0 01-.762-.423c-.227-.478-.737-.604-1.07-.638-.28-.028-.687-.142-.016-.27.53-.122.846.33.864.382.49.845 1.22.607 1.517.464.048-.36.188-.607.362-.746a6.11 6.11 0 013.882-.777c.189-.147.363-.284.502-.416.035-.035.068-.07.102-.104.28-.28.53-.538.745-.785.452-.49.704-1.06.704-1.745 0-.583-.223-1.092-.61-1.48C14.73 9.42 14.5 8.97 14.5 8.5c0-.492.23-1.062.61-1.48.452-.49.704-1.06.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-1.06-.704-1.745 0-.583-.223-1.092-.61-1.48-.452-.49-.704-10.74 13.914l-7.794 8.785-11.83 3.39c-.932.268-1.554-.532-1.31-1.45L22.9 10.74c.245-.92.65-.92 1.31-1.45l-3.39-11.83z" />
+                        </svg>
+                        MCRobotics7045 (GitHub)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">About FRC 7045</h2>
+            <div class="text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    FRC Team 7045 was founded in 2018 with a vision to create an accessible and engaging platform for high school students to experience the world of robotics. Our team is composed of students from various grades, each contributing unique skills and perspectives to our projects.
+                </p>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Our Mission</h3>
+                <p class="mb-4">
+                    Our mission is to inspire young people to be science and technology leaders and innovators, by engaging them in exciting mentor-based programs that build science, engineering, and technology skills, that inspire innovation, and that foster well-rounded life capabilities including self-confidence, communication, and leadership.
+                </p>
+                <h3 class="2xl font-semibold text-blue-700 mb-3">Our Values</h3>
+                <ul class="list-disc list-inside mb-4 pl-4">
+                    <li class="mb-2"><strong>Gracious Professionalism:</strong> We uphold the FIRST principle of acting with integrity, kindness, and mutual respect.</li>
+                    <li class="mb-2"><strong>Teamwork:</strong> We believe in collaborative problem-solving and supporting each other's growth.</li>
+                    <li class="mb-2"><strong>Innovation:</strong> We continuously seek creative solutions and embrace new ideas.</li>
+                    <li class="mb-2"><strong>Perseverance:</strong> We tackle challenges with determination and learn from every experience.</li>
+                    <li class="mb-2"><strong>Community Engagement:</strong> We strive to give back to our community through outreach and education.</li>
+                </ul>
+                <p class="mb-4">
+                    We meet regularly at our school's robotics lab during the build season (January to April) and weekly in the offseason. Our mentors, who are professionals and volunteers from various STEM fields, provide invaluable guidance and support to our students.
+                </p>
+                <p class="text-center mt-6">
+                    <img src="https://placehold.co/500x300/4299e1/ffffff?text=Team+Photo" alt="FRC 7045 Team Members" class="rounded-lg shadow-lg max-w-full h-auto mx-auto">
+                </p>
+            </div>
+        </section>
+
+        <section id="current-project-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">This Past Season's Project: 2025 ReefScape</h2>
+            <div class="text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    Every year, FRC teams are challenged with a new game that requires designing, building, and programming a robot to perform specific tasks. Our current focus is preparing our lab for the upcoming FIRST Robotics Competition game, "Rebuilt".
+                </p>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Design & Development</h3>
+                <p class="mb-4">
+                    This year, our robot is designed to [describe main functions, e.g., pick up game pieces, score points in specific areas, climb structures]. We are currently in the [Phase, e.g., prototyping, manufacturing, programming] phase, working diligently to refine our designs and ensure robust performance.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+CAD" alt="Robot CAD Design" class="rounded-lg shadow-md max-w-full h-auto mb-4">
+                        <p class="text-sm text-gray-600 text-center">Computer-Aided Design (CAD) of our robot's chassis.</p>
+                    </div>
+                    <div>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+Assembly" alt="Robot Assembly in Progress" class="rounded-lg shadow-md max-w-full h-auto mb-4">
+                        <p class="text-sm text-gray-600 text-center">Assembly of our robot's arm mechanism.</p>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Programming & Testing</h3>
+                <p class="mb-4">
+                    Our software team is developing the autonomous and teleoperated modes for the robot, using [Programming Language, e.g., Java, C++] and the WPILib framework. Rigorous testing is underway to ensure reliability and efficiency on the competition field.
+                </p>
+                <p class="mb-4">
+                    Follow our social media channels to get live updates on our progress as we prepare for the upcoming regional competitions!
+                </p>
+            </div>
+        </section>
+
+        <section id="fundraiser-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Support FRC 7045</h2>
+            <div class="text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    Building a competitive FIRST Robotics team requires significant resources. From purchasing specialized parts and tools to covering registration fees for competitions, every contribution helps us achieve our goals and continue inspiring students.
+                </p>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Why Your Support Matters</h3>
+                <ul class="list-disc list-inside mb-4 pl-4">
+                    <li class="mb-2"><strong>Empowering Future Leaders:</strong> Your donation helps students develop crucial skills in STEM, teamwork, and leadership.</li>
+                    <li class="mb-2"><strong>Building Innovative Robots:</strong> Funds go directly towards materials, components, and equipment needed to build our sophisticated robots.</li>
+                    <li class="mb-2"><strong>Enriching Educational Experiences:</strong> We provide hands-on learning experiences that extend beyond the classroom.</li>
+                    <li class="mb-2"><strong>Community Outreach:</strong> Your support enables us to engage with local schools and communities, spreading the excitement of STEM.</li>
+                </ul>
+                <h3 class="2xl font-semibold text-blue-700 mb-3">How You Can Help</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm text-center">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">Make a Donation</h4>
+                        <p class="mb-4">
+                            Every amount, big or small, makes a difference. You can make a secure online donation through our official fundraising platform.
+                        </p>
+                        <a href="https://example.com/donate" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300">
+                            Donate Now
+                        </a>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm text-center">
+                        <h4 class="text-xl font-bold text-blue-800 mb-2">Become a Sponsor</h4>
+                        <p class="mb-4">
+                            We welcome corporate and individual sponsors. Learn about our sponsorship tiers and the benefits of partnering with FRC 7045.
+                        </p>
+                        <a href="https://example.com/sponsorship" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300">
+                            Sponsor Us
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm mt-8 text-center">
+                    <h4 class="text-xl font-bold text-blue-800 mb-2">✨ Generate Fundraiser Message ✨</h4>
+                    <p class="mb-4">
+                        Need help drafting a compelling message for potential donors or sponsors? Describe your goal below, and we'll help you craft a message!
+                    </p>
+                    <button id="open-fundraiser-modal" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300">
+                        Generate Message
+                    </button>
+                </div>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3 mt-6">Contact Us</h3>
+                <p class="mb-4">
+                    If you have any questions about supporting FRC 7045 or would like to learn more about our team, please don't hesitate to reach out!
+                </p>
+                <p class="text-center">Email: <a href="mailto:contact@frc7045.org" class="text-sky-600 hover:underline">contact@frc7045.org</a></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="fundraiser-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" id="close-fundraiser-modal">&times;</button>
+            <h3 class="text-2xl font-bold text-blue-800 mb-4 text-center">Generate Fundraiser Message</h3>
+            <div class="mb-4">
+                <label for="fundraiser-prompt" class="block text-gray-700 text-sm font-bold mb-2">
+                    Describe your fundraising goal (e.g., "Raise $500 for new robot parts," "Thank a sponsor for their $1000 donation"):
+                </label>
+                <textarea id="fundraiser-prompt" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"></textarea>
+            </div>
+            <button id="generate-message-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 w-full mb-4">
+                Generate Message
+            </button>
+            <div id="loading-spinner" class="loading-spinner"></div>
+            <div id="generated-message-output" class="bg-gray-100 p-4 rounded-md border border-gray-300 text-gray-800 text-sm overflow-auto max-h-60 whitespace-pre-wrap">
+                Your generated message will appear here.
+            </div>
+             <button id="copy-message-button" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 w-full mt-4">
+                Copy to Clipboard
+            </button>
+        </div>
     </div>
-  </section>
 
-  <section id="sponsors" class="section">
-    <h2>Thank You to Our Sponsors</h2>
-    <p>We’re grateful to the organizations and individuals who make our team possible. Interested in supporting STEM education? <a href="#contact">Get in touch</a> to become a sponsor!</p>
-  </section>
+    <footer class="bg-blue-800 text-white p-4 text-center mt-auto shadow-inner">
+        <p class="text-sm">&copy; 2025 FRC 7045. All rights reserved.</p>
+    </footer>
 
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:robotics@morriscatholic.org">robotics@morriscatholic.org</a></p>
-    <div class="social">
-      <p>Follow us on Instagram: <a href="https://instagram.com/frc2045" target="_blank">@frc2045</a></p>
-    </div>
-  </section>
+    <script>
+        // Get references to elements
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const contentSections = document.querySelectorAll('.content-section');
 
-  <footer>
-    <p>&copy; 2025 MCCrusaders - FRC Team 7045. All rights reserved.</p>
-  </footer>
+        // Modal elements
+        const openFundraiserModalBtn = document.getElementById('open-fundraiser-modal');
+        const fundraiserModal = document.getElementById('fundraiser-modal');
+        const closeFundraiserModalBtn = document.getElementById('close-fundraiser-modal');
+        const fundraiserPromptInput = document.getElementById('fundraiser-prompt');
+        const generateMessageButton = document.getElementById('generate-message-button');
+        const generatedMessageOutput = document.getElementById('generated-message-output');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const copyMessageButton = document.getElementById('copy-message-button');
+
+
+        // Function to toggle dropdown menu visibility
+        function toggleDropdown() {
+            dropdownMenu.classList.toggle('active');
+        }
+
+        // Add event listener to dropdown button
+        if (dropdownButton) {
+            dropdownButton.addEventListener('click', toggleDropdown);
+        }
+
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            // Hide all content sections
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the requested content section
+            const targetPage = document.getElementById(`${pageId}-page`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                // Scroll to the top of the content area
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.addEventListener('click', function(event) {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                if (dropdownMenu.classList.contains('active')) {
+                    dropdownMenu.classList.remove('active');
+                }
+            }
+        });
+
+        // Initialize by showing the home page when the script loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+
+        // --- LLM Feature Logic ---
+
+        // Open Fundraiser Message Modal
+        openFundraiserModalBtn.addEventListener('click', () => {
+            fundraiserModal.classList.add('open');
+            generatedMessageOutput.textContent = 'Your generated message will appear here.'; // Reset output
+            fundraiserPromptInput.value = ''; // Clear input field
+        });
+
+        // Close Fundraiser Message Modal
+        closeFundraiserModalBtn.addEventListener('click', () => {
+            fundraiserModal.classList.remove('open');
+        });
+
+        // Close modal if clicked outside content
+        fundraiserModal.addEventListener('click', (event) => {
+            if (event.target === fundraiserModal) {
+                fundraiserModal.classList.remove('open');
+            }
+        });
+
+        // Generate Message Function (calling Gemini API)
+        generateMessageButton.addEventListener('click', async () => {
+            const prompt = fundraiserPromptInput.value.trim();
+            if (!prompt) {
+                generatedMessageOutput.textContent = 'Please enter a description for your message.';
+                return;
+            }
+
+            // Show loading spinner
+            loadingSpinner.classList.add('active');
+            generatedMessageOutput.textContent = 'Generating message...';
+            generateMessageButton.disabled = true; // Disable button during generation
+            copyMessageButton.disabled = true; // Disable copy button
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: `Generate a compelling and concise message for FRC Team 7045 based on the following goal: "${prompt}". Make sure it's suitable for a fundraiser or sponsor communication.` }] });
+
+            const payload = { contents: chatHistory };
+            // IMPORTANT: Leave apiKey as an empty string. Canvas will automatically provide it.
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    generatedMessageOutput.textContent = text;
+                } else {
+                    generatedMessageOutput.textContent = 'Error: Could not generate message. Please try again.';
+                    console.error('Unexpected API response structure:', result);
+                }
+            } catch (error) {
+                generatedMessageOutput.textContent = `Error: ${error.message}. Please check your connection or try again.`;
+                console.error('Error calling Gemini API:', error);
+            } finally {
+                // Hide loading spinner
+                loadingSpinner.classList.remove('active');
+                generateMessageButton.disabled = false; // Re-enable button
+                copyMessageButton.disabled = false; // Re-enable copy button
+            }
+        });
+
+        // Copy generated message to clipboard
+        copyMessageButton.addEventListener('click', () => {
+            const textToCopy = generatedMessageOutput.textContent;
+            if (textToCopy && textToCopy !== 'Your generated message will appear here.' && textToCopy !== 'Generating message...') {
+                // Use document.execCommand('copy') as navigator.clipboard.writeText might not work in iframes
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Message copied to clipboard!'); // A simple alert for success
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    alert('Failed to copy message.'); // Fallback alert for failure
+                }
+                document.body.removeChild(textarea);
+            } else {
+                alert('No message to copy!');
+            }
+        });
+
+    </script>
 </body>
 </html>
-
-
-
