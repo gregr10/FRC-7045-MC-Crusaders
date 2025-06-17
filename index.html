@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRC 7045</title>
@@ -151,28 +151,6 @@
                     See Our Current Project
                 </button>
             </div>
-
-            <!-- Socials Section on Home Page (Text-only for stability) -->
-            <div class="mt-8 pt-8 border-t border-gray-200 text-center" id="socials-section">
-                <h3 class="text-2xl font-semibold text-blue-800 mb-4">Connect With Us!</h3>
-                <div class="flex flex-wrap justify-center items-center gap-6 text-lg">
-                    <a href="mailto:robotics@morriscatholic.org" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
-                        Email
-                    </a>
-                    <a href="https://www.instagram.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
-                        Instagram
-                    </a>
-                    <a href="https://x.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
-                        X (Twitter)
-                    </a>
-                    <a href="https://www.facebook.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
-                        Facebook
-                    </a>
-                     <a href="https://github.com/MCRobotics7045" target="_blank" rel="noopener noreferrer" class="text-sky-600 hover:text-sky-800 hover:underline transition duration-300 flex items-center">
-                        GitHub
-                    </a>
-                </div>
-            </div>
         </section>
 
         <!-- About Page Content -->
@@ -186,7 +164,7 @@
                 <p class="mb-4">
                     Our mission is to inspire young people to be science and technology leaders and innovators, by engaging them in exciting mentor-based programs that build science, engineering, and technology skills, that inspire innovation, and that foster well-rounded life capabilities including self-confidence, communication, and leadership.
                 </p>
-                <h3 class="2xl font-semibold text-blue-700 mb-3">Our Values</h3>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Our Values</h3>
                 <ul class="list-disc list-inside mb-4 pl-4">
                     <li class="mb-2"><strong>Gracious Professionalism:</strong> We uphold the FIRST principle of acting with integrity, kindness, and mutual respect.</li>
                     <li class="mb-2"><strong>Teamwork:</strong> We believe in collaborative problem-solving and supporting each other's growth.</li>
@@ -212,10 +190,14 @@
                 </p>
                 <h3 class="text-2xl font-semibold text-blue-700 mb-3">Design & Development</h3>
                 <p class="mb-4">
-                    This year, our robot is designed to pick and place 4 inch PVC pipes (Known as Coral) onto purple rods (Known as the Reef) to score points. Our robot was also equipped with arms to claw green yoga balls (Known as Algee) from the reef structure to maxamize scoring.  
+                    This year, our robot is designed to pick and place 4 inch PVC pipes (Known as Coral) onto purple rods (Known as the Reef) to score points. Our robot was also equipped with arms to claw green yoga balls (Known as Algee) from the reef structure to maxamize scoring.
                 </p>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    
+                    <div>
+                        <!-- Re-added missing placeholder image for CAD design -->
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+CAD" alt="Robot CAD Design" class="rounded-lg shadow-md max-w-full h-auto mb-4">
+                        <p class="text-sm text-gray-600 text-center">Computer-Aided Design (CAD) of our robot's chassis.</p>
+                    </div>
                     <div>
                         <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+Assembly" alt="Robot Assembly in Progress" class="rounded-lg shadow-md max-w-full h-auto mb-4">
                         <p class="text-sm text-gray-600 text-center">Assembly of our robot before our main event.</p>
@@ -245,10 +227,9 @@
                     <li class="mb-2"><strong>Enriching Educational Experiences:</strong> We provide hands-on learning experiences that extend beyond the classroom.</li>
                     <li class="mb-2"><strong>Community Outreach:</strong> Your support enables us to engage with local schools and communities, spreading the excitement of STEM.</li>
                 </ul>
-                <h3 class="2xl font-semibold text-blue-700 mb-3">How You Can Help</h3>
-                <div class="grid md:grid-cols-1 gap-6 mb-6">
-                    
-                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm text-center">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">How You Can Help</h3>
+                <div class="flex justify-center mb-6">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm text-center w-full max-w-xl">
                         <h4 class="text-xl font-bold text-blue-800 mb-2">Become a Sponsor</h4>
                         <p class="mb-4">
                             We welcome corporate and individual sponsors. Learn about our sponsorship tiers and the benefits of partnering with FRC 7045.
@@ -258,21 +239,34 @@
                         </a>
                     </div>
                 </div>
-                
-                <h3 class="text-2xl font-semibold text-blue-700 mb-3 mt-6">Contact Us</h3>
-                <p class="mb-4">
-                    If you have any questions about supporting FRC 7045 or would like to learn more about our team, please don't hesitate to reach out!
-                </p>
-                <p class="text-center">Email: <a href="mailto:robotics@morriscatholic.org" class="text-sky-600 hover:underline">robotics@morriscatholic.org</a></p>
             </div>
         </section>
     </main>
 
-  
-
     <!-- Footer Section -->
-    <footer class="bg-blue-800 text-white p-4 text-center mt-auto shadow-inner">
-        <p class="text-sm">&copy; 2025 FRC 7045. All rights reserved.</p>
+    <footer class="bg-blue-800 text-white p-4 text-center mt-auto shadow-inner flex flex-col items-center py-6">
+        <!-- Socials Section moved here from Home Page -->
+        <div class="pt-4 border-t border-blue-700 w-full text-center" id="footer-socials">
+            <h3 class="text-xl font-semibold text-white mb-3">Connect With Us!</h3>
+            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-base">
+                <a href="mailto:robotics@morriscatholic.org" class="text-sky-300 hover:text-sky-100 hover:underline transition duration-300 flex items-center">
+                    Email
+                </a>
+                <a href="https://www.instagram.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-300 hover:text-sky-100 hover:underline transition duration-300 flex items-center">
+                    Instagram
+                </a>
+                <a href="https://x.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-300 hover:text-sky-100 hover:underline transition duration-300 flex items-center">
+                    X (Twitter)
+                </a>
+                <a href="https://www.facebook.com/frc7045" target="_blank" rel="noopener noreferrer" class="text-sky-300 hover:text-sky-100 hover:underline transition duration-300 flex items-center">
+                    Facebook
+                </a>
+                 <a href="https://github.com/MCRobotics7045" target="_blank" rel="noopener noreferrer" class="text-sky-300 hover:text-sky-100 hover:underline transition duration-300 flex items-center">
+                    GitHub
+                </a>
+            </div>
+        </div>
+        <p class="text-sm mt-4">&copy; 2025 FRC 7045. All rights reserved.</p>
     </footer>
 
     <script>
@@ -281,20 +275,14 @@
         const dropdownMenu = document.getElementById('dropdown-menu');
         const contentSections = document.querySelectorAll('.content-section');
 
-        // Modal elements
-        const openFundraiserModalBtn = document.getElementById('open-fundraiser-modal');
-        const fundraiserModal = document.getElementById('fundraiser-modal');
-        const closeFundraiserModalBtn = document.getElementById('close-fundraiser-modal');
-        const fundraiserPromptInput = document.getElementById('fundraiser-prompt');
-        const generateMessageButton = document.getElementById('generate-message-button');
-        const generatedMessageOutput = document.getElementById('generated-message-output');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const copyMessageButton = document.getElementById('copy-message-button');
+       
 
 
         // Function to toggle dropdown menu visibility
         function toggleDropdown() {
-            dropdownMenu.classList.toggle('active');
+            if (dropdownMenu) { // Defensive check
+                dropdownMenu.classList.toggle('active');
+            }
         }
 
         // Add event listener to dropdown button
@@ -305,9 +293,12 @@
         // Function to show the selected page and hide others
         function showPage(pageId) {
             // Hide all content sections
-            contentSections.forEach(section => {
-                section.classList.remove('active');
-            });
+            if (contentSections) { // Defensive check
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+            }
+
 
             // Show the requested content section
             const targetPage = document.getElementById(`${pageId}-page`); // Ensure ID is correctly formed
@@ -321,7 +312,7 @@
         // Close the dropdown if the user clicks outside of it
         window.addEventListener('click', function(event) {
             // Check if the click is outside the dropdown button AND outside the dropdown menu
-            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            if (dropdownButton && !dropdownButton.contains(event.target) && dropdownMenu && !dropdownMenu.contains(event.target)) {
                 if (dropdownMenu.classList.contains('active')) {
                     dropdownMenu.classList.remove('active');
                 }
@@ -333,100 +324,9 @@
             showPage('home');
         });
 
-        // --- LLM Feature Logic ---
-
-        // Open Fundraiser Message Modal
-        openFundraiserModalBtn.addEventListener('click', () => {
-            fundraiserModal.classList.add('open');
-            generatedMessageOutput.textContent = 'Your generated message will appear here.'; // Reset output
-            fundraiserPromptInput.value = ''; // Clear input field
-        });
-
-        // Close Fundraiser Message Modal
-        closeFundraiserModalBtn.addEventListener('click', () => {
-            fundraiserModal.classList.remove('open');
-        });
-
-        // Close modal if clicked outside content
-        fundraiserModal.addEventListener('click', (event) => {
-            if (event.target === fundraiserModal) {
-                fundraiserModal.classList.remove('open');
-            }
-        });
-
-        // Generate Message Function (calling Gemini API)
-        generateMessageButton.addEventListener('click', async () => {
-            const prompt = fundraiserPromptInput.value.trim();
-            if (!prompt) {
-                generatedMessageOutput.textContent = 'Please enter a description for your message.';
-                return;
-            }
-
-            // Show loading spinner
-            loadingSpinner.classList.add('active');
-            generatedMessageOutput.textContent = 'Generating message...';
-            generateMessageButton.disabled = true; // Disable button during generation
-            copyMessageButton.disabled = true; // Disable copy button
-
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: `Generate a compelling and concise message for FRC Team 7045 based on the following goal: "${prompt}". Make sure it's suitable for a fundraiser or sponsor communication.` }] });
-
-            const payload = { contents: chatHistory };
-            // IMPORTANT: Leave apiKey as an empty string. Canvas will automatically provide it.
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    generatedMessageOutput.textContent = text;
-                } else {
-                    generatedMessageOutput.textContent = 'Error: Could not generate message. Please try again.';
-                    console.error('Unexpected API response structure:', result);
-                }
-            } catch (error) {
-                generatedMessageOutput.textContent = `Error: ${error.message}. Please check your connection or try again.`;
-                console.error('Error calling Gemini API:', error);
-            } finally {
-                // Hide loading spinner
-                loadingSpinner.classList.remove('active');
-                generateMessageButton.disabled = false; // Re-enable button
-                copyMessageButton.disabled = false; // Re-enable copy button
-            }
-        });
-
-        // Copy generated message to clipboard
-        copyMessageButton.addEventListener('click', () => {
-            const textToCopy = generatedMessageOutput.textContent;
-            if (textToCopy && textToCopy !== 'Your generated message will appear here.' && textToCopy !== 'Generating message...') {
-                // Use document.execCommand('copy') as navigator.clipboard.writeText might not work in iframes
-                const textarea = document.createElement('textarea');
-                textarea.value = textToCopy;
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    alert('Message copied to clipboard!'); // A simple alert for success
-                } catch (err) {
-                    console.error('Failed to copy text: ', err);
-                    alert('Failed to copy message.'); // Fallback alert for failure
-                }
-                document.body.removeChild(textarea);
-            } else {
-                alert('No message to copy!');
-            }
-        });
-
+      
+             
+        
     </script>
 </body>
 </html>
