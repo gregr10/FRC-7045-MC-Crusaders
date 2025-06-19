@@ -33,62 +33,14 @@
         .content-section.active {
             display: block;
         }
-        /* Modal styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-        .modal-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-            max-width: 90%;
-            width: 500px;
-            position: relative;
-        }
-        .modal-close-button {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #4A5568; /* gray-700 */
-        }
-        .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db; /* Carolina blue-like color */
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 1rem auto;
-            display: none; /* Hidden by default */
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .loading-spinner.active {
-            display: block;
-        }
+        /* Modal styles (removed as LLM feature is being eliminated) */
+        /* .modal-overlay { ... } */
+        /* .modal-overlay.open { ... } */
+        /* .modal-content { ... } */
+        /* .modal-close-button { ... } */
+        /* .loading-spinner { ... } */
+        /* @keyframes spin { ... } */
+        /* .loading-spinner.active { ... } */
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -97,7 +49,11 @@
     <header class="bg-blue-800 text-white p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center px-4">
             <!-- Title on the left -->
-            <h1 class="text-3xl md:text-4xl font-bold text-white rounded-lg p-2 cursor-pointer" onclick="showPage('home')">FRC 7045</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-white rounded-lg p-2 cursor-pointer flex items-center" onclick="showPage('home')">
+                <!-- Logo Image -->
+                <img src="https://placehold.co/40x40/000/fff?text=Logo" alt="FRC 7045 Logo" class="h-10 w-10 mr-2 rounded-full">
+                FRC 7045
+            </h1>
 
             <!-- Dropdown Menu on the right (for mobile) -->
             <div class="relative md:hidden">
@@ -181,26 +137,29 @@
             </div>
         </section>
 
-        <!-- Current Project Page Content -->
+        <!-- Our Robots Page Content (Formerly Current Project) -->
         <section id="current-project-page" class="content-section bg-white p-8 rounded-lg shadow-md mb-8">
-            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Reefscape 2025 Robot: Dory</h2>
+            <h2 class="text-4xl font-extrabold text-blue-800 mb-6 text-center">Our Robots</h2>
             <div class="text-gray-700 leading-relaxed">
                 <p class="mb-4">
-                    Every year, FRC teams are challenged with a new game that requires designing, building, and programming a robot to perform specific tasks. Our current focus is preparing our lab for the upcoming FIRST Robotics Competition game, "Rebuilt".
+                    Every year, FRC teams are challenged with a new game that requires designing, building, and programming a robot to perform specific tasks. Below are some of the robots our team has built and competed with over the years.
                 </p>
-                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Design & Development</h3>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Reefscape 2025 Robot: Dory</h3>
                 <p class="mb-4">
                     This year, our robot is designed to pick and place 4 inch PVC pipes (Known as Coral) onto purple rods (Known as the Reef) to score points. Our robot was also equipped with arms to claw green yoga balls (Known as Algee) from the reef structure to maxamize scoring.
                 </p>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <!-- Re-added missing placeholder image for CAD design -->
-                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+CAD" alt="Robot CAD Design" class="rounded-lg shadow-md max-w-full h-auto mb-4">
-                        <p class="text-sm text-gray-600 text-center">Computer-Aided Design (CAD) of our robot's chassis.</p>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+1+Image" alt="Robot 1 Image" class="rounded-lg shadow-md max-w-full h-auto">
                     </div>
                     <div>
-                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+Assembly" alt="Robot Assembly in Progress" class="rounded-lg shadow-md max-w-full h-auto mb-4">
-                        <p class="text-sm text-gray-600 text-center">Assembly of our robot before our main event.</p>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+2+Image" alt="Robot 2 Image" class="rounded-lg shadow-md max-w-full h-auto">
+                    </div>
+                    <div>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+3+Image" alt="Robot 3 Image" class="rounded-lg shadow-md max-w-full h-auto">
+                    </div>
+                    <div>
+                        <img src="https://placehold.co/400x250/2b6cb0/ffffff?text=Robot+4+Image" alt="Robot 4 Image" class="rounded-lg shadow-md max-w-full h-auto">
                     </div>
                 </div>
                 <h3 class="text-2xl font-semibold text-blue-700 mb-3">Programming & Testing</h3>
@@ -227,6 +186,10 @@
                     <li class="mb-2"><strong>Enriching Educational Experiences:</strong> We provide hands-on learning experiences that extend beyond the classroom.</li>
                     <li class="mb-2"><strong>Community Outreach:</strong> Your support enables us to engage with local schools and communities, spreading the excitement of STEM.</li>
                 </ul>
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">Our Current Sponsors</h3>
+                <p class="mb-4">
+                    We are incredibly grateful for the generous support from our current sponsors, including Picatinny Arsenal, Morris Catholic High School, and our dedicated Team families. Their contributions are vital to our success.
+                </p>
                 <h3 class="text-2xl font-semibold text-blue-700 mb-3">How You Can Help</h3>
                 <div class="flex justify-center mb-6">
                     <div class="bg-blue-50 p-6 rounded-lg shadow-sm text-center w-full max-w-xl">
@@ -275,9 +238,6 @@
         const dropdownMenu = document.getElementById('dropdown-menu');
         const contentSections = document.querySelectorAll('.content-section');
 
-       
-
-
         // Function to toggle dropdown menu visibility
         function toggleDropdown() {
             if (dropdownMenu) { // Defensive check
@@ -298,7 +258,6 @@
                     section.classList.remove('active');
                 });
             }
-
 
             // Show the requested content section
             const targetPage = document.getElementById(`${pageId}-page`); // Ensure ID is correctly formed
@@ -324,9 +283,38 @@
             showPage('home');
         });
 
-      
-             
-        
+        // Custom Modal for Messages (replaces alert() functionality)
+        function displayMessageModal(message) {
+            const messageModalOverlay = document.createElement('div');
+            messageModalOverlay.className = 'modal-overlay open'; // Reuse modal-overlay styles
+            messageModalOverlay.id = 'message-modal-overlay'; // Unique ID for this specific modal
+
+            const messageModalContent = document.createElement('div');
+            messageModalContent.className = 'modal-content'; // Reuse modal-content styles
+
+            messageModalContent.innerHTML = `
+                <button class="modal-close-button" id="message-modal-close-button">&times;</button>
+                <p class="text-gray-800 text-lg text-center mt-4">${message}</p>
+            `;
+
+            messageModalOverlay.appendChild(messageModalContent);
+            document.body.appendChild(messageModalOverlay);
+
+            // Close logic for the new message modal
+            const closeBtn = document.getElementById('message-modal-close-button');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(messageModalOverlay);
+                });
+            }
+
+            // Close if clicked outside the message modal content
+            messageModalOverlay.addEventListener('click', (event) => {
+                if (event.target === messageModalOverlay) {
+                    document.body.removeChild(messageModalOverlay);
+                }
+            });
+        }
     </script>
 </body>
 </html>
